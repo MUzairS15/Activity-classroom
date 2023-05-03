@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const verifyUser = function verifyUser(req, res, next){
     const privateKey = "mynameisuzair";
-
+    
     let success =true;
     const auth_token = req.header('auth-token');
 

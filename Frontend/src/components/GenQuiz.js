@@ -32,8 +32,8 @@ function GenQuiz({ data, handleSubmit, handleAdd }) {
 					"type": "mcq"
 				})
 			})
-			const response2 = await response.json();
-			if (response2.success) {
+			const result = await response.json();
+			if (result.success) {
 				alert('Posted Successfully');
 			} else {
 				alert('Some error Occured');

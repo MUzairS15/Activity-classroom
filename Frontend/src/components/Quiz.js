@@ -21,8 +21,7 @@ function Quiz() {
 		const newDat = dat.filter(function (delIndex, value) {
 			if (value === e.target.value) {
 				return false;
-			} 
-				
+			} 			
 			return true;	
 		})
 		setData(newDat);

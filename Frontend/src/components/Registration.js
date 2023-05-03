@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom';
 import '../App.css'
 import Login from './Login';
 import SignUp from './SignUp';
 
 function Registration() {
-
-	let history = useHistory();
 	const [signUp, isSignUp] = useState(false);
 	const onChange = () => {
 		isSignUp(!signUp);
@@ -22,7 +19,7 @@ function Registration() {
 		e.preventDefault();
 		const ele = new FormData(e.target);
 		const details = Object.fromEntries(ele);
-		const response1 = await fetch('/auth/login', {
+		const response = await fetch('/auth/login', {
 			method: 'POST',
 			headers: {
 				"Accept": "application/json",
@@ -35,12 +32,13 @@ function Registration() {
 			})
 
 		})
-		const response2 = await response1.json();
-		if (response2.success) {
-			localStorage.setItem("auth-token", response2.auth_token);
-			history.push("/");
+		const result = await response.json();
+		console.log("result", result);
+		if (result.success) {
+			localStorage.setItem("auth-token", result.auth_token);
+			window.location.reload();
 		} else {
-			alert(response2.error)
+			alert(result.error.msg)
 		}
 	}
 
@@ -48,7 +46,7 @@ function Registration() {
 		e.preventDefault();
 		const details = new FormData(e.target);
 		const user = Object.fromEntries(details);
-		const response1 = await fetch('/createUser', {
+		const response = await fetch('/auth/createUser', {
 			method: 'POST',
 			headers: {
 				"Accept": "application/json",
@@ -60,11 +58,14 @@ function Registration() {
 				name: user.firstname
 			})
 		})
-		const response2 = await response1.json();
-		if (response2.error) {
-			alert(response2.error)
+		const result = await response.json();
+		if (result.error) {
+			result.error.forEach(err => {
+				alert(err.msg)
+			})
 		}
 	}
+	return (
 	!signUp ?
 		<section className="sec1">
 			<div className="title-page">
@@ -95,6 +96,7 @@ function Registration() {
 				<SignUp prop={handleCreate} />
 			</div>
 		</section>
+	)
 }
 
 export default Registration;

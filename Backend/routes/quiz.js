@@ -4,7 +4,6 @@ const router = express.Router();
 const quizController = require('../controller/quiz_controller');
 const { handleAsyncError } = require('../middleware/error');
 
-
 //add question to database for LiveQuiz
 router.post('/live/addQuestion', handleAsyncError (quizController.add_live_question));
 

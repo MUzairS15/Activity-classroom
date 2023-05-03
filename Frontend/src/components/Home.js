@@ -13,6 +13,9 @@ function Home() {
 	const defaultValue = "Please select class code";
 
 	useEffect(() => {
+		fetchCodes();
+	},[])
+	useEffect(() => {
 		getStudents();
 	}, [subjectList]);
 
@@ -21,12 +24,12 @@ function Home() {
 	// Get responses of students and create statistics (Responses component)
 	const getResponse = async function fetchResponse() {
 		if (selectedCode !== null) {
-			const response2 = await fetch(`/api/responses/getstat/${selectedCode}`, {
+			const result = await fetch(`/api/responses/getstat/${selectedCode}`, {
 				headers: {
 					"auth-token": localStorage.getItem('auth-token')
 				}
 			})
-			const student = await response2.json();
+			const student = await result.json();
 
 			setResponses(student.responses);
 			setStat(student.stats);
@@ -101,7 +104,7 @@ function Home() {
 
 	const handleLogOut = function () {
 		localStorage.clear();
-		history.push('/');
+		window.location.reload();
 	}
 
 	return (
@@ -112,7 +115,7 @@ function Home() {
 				<button target="_blank" onClick={handleDownload} className="mx-3 btn btn-dark mt-3"  >Download</button>
 			</div>
 			<div className="d-flex flex-column align-items-center">
-				<select id="select" onClick={fetchCodes} onChange={(e) => { handleChange(e) }} className="form-select my-3" aria-label="Default select example" style={{ width: "50%" }}>
+				<select id="select" onChange={(e) => { handleChange(e) }} className="form-select my-3" aria-label="Default select example" style={{ width: "50%" }}>
 					<option >{defaultValue}</option>
 					{subjectList.length > 0 &&
 						subjectList.map((sub, ind) => (

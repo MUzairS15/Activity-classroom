@@ -29,18 +29,23 @@ const SignUp = async function(req, res, next){
 }
 
 const LogIn = async function(req, res, next){
-
+    console.log("REACHED LOGIN");
     const userEmail = await registeredUsers.where('username','==',req.body.username).limit(1).get();
     if(userEmail.size === 0) {
         next(new AppError("Please register yourself", 403))
     }
+    console.log("REACHED LOGIN 37");
     userEmail.forEach((doc) =>{
+        console.log("REACHED LOGIN 39");
         if(!doc.exists){
                 next(new AppError("Enter valid credentials", 401));
+                console.log("REACHED LOGIN 42");
             }    
             else if(doc.data().password != req.body.password){
+                console.log("REACHED LOGIN 45");
                 next(new AppError("Enter valid credentials", 401));
             }else{
+                console.log("REACHED LOGIN 48");
                 const auth_token = jwt.sign({id: doc.data().id}, privateKey);
                 res.json({"success":true,auth_token})
             }

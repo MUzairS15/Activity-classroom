@@ -1,5 +1,5 @@
 const dotenv = require('dotenv');
-const { AppError } = require('../util/AppError');
+const AppError  = require('../util/AppError');
 dotenv.config();
 
 const sendDevError = function (err, res) {
@@ -21,7 +21,7 @@ const sendProdError = function (err, res) {
     if(Array.isArray(err.errors)) {
         res.json({
             error: err.errors,
-            message: "Please enter correct"
+            message: "Input validation Failed"
         })
     } else {
         res.json({
@@ -42,7 +42,7 @@ const errorHandler = function(err, req, res, next) {
 const handleAsyncError = function(fun) {
     return function(req, res, next){
         fun(req, res, next).catch(err=>{
-            next(new AppError(err.message))
+            next(new AppError(err.message, err.statusCode))
         });
     }
 }
