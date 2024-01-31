@@ -12,7 +12,6 @@ Also the responses can be downloaded for the current session in a CSV file. Stat
 * This project also tackles the issue of fake attendance, by providing a QR code which gets updated every 10 sec, so by the time code is circulated, it is changed.
 
 <img src = "./2.jpeg" width = "400px"/>
-
 ## <b>Future Scope: </b>
 
 * Currently, MCQ questions are supported, but we can add functionality for descriptive type questions.
