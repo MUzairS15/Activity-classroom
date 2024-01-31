@@ -12,7 +12,6 @@ There are alternatives, like form based quiz, but manging form links, distribuit
 Also the responses can be downloaded for the current session in a CSV file. Statistics is also displayed in form of pie chart.
 
 * This project also tackles the issue of fake attendance, by providing a QR code which gets updated every 10 sec, so by the time code is circulated, it is changed.
-
 <img src = "./2.jpeg" width = "400px"/>
 
 ## <b>Future Scope: </b>
