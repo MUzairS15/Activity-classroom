@@ -9,7 +9,6 @@ And teacher assumes they didn't understood.
 
 * During offline session, teacher can understand student from their  expression, but in online session it is a barrier.
 There are alternatives, like form based quiz, but manging form links, distribuitng, is hassle, sometimes it also doesn't accept response and other problems.
-
 * So our project, simplifies this experience by providing a UI to easily generate isolated classroom, generate Live Quiz, check who have joned the ongoing session. As well as get statistics regarding performance of students for the quiz.
 Also the responses can be downloaded for the current session in a CSV file. Statistics is also displayed in form of pie chart.
 
